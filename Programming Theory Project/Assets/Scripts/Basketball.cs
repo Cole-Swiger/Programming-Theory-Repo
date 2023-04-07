@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class Basketball : Ball
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private float downForce = -1;
+    
     void Start()
     {
-        
+        //Abstraction
+        Setup();
     }
 
-    // Update is called once per frame
-    void Update()
+    //Polymorphism
+    //Throw ball to target with slight arch
+    public override void Pass()
     {
-        
+        //abstraction
+        ApplyForce(defaultForce, upForce, 4);
+    }
+
+    public override void Pass(float force)
+    {
+        //abstraction
+        ApplyForce(force, upForce, 8);
+    }
+
+    //Bounce ball on ground towards target
+    public void BouncePass()
+    {
+        ApplyForce(defaultForce, downForce, 2);
+    }
+
+    public void BouncePass(float force)
+    {
+        ApplyForce(force, downForce, 4);
     }
 }
